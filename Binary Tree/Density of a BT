@@ -1,0 +1,50 @@
+
+# Python3 program to find density 
+# of a binary tree  
+  
+# A binary tree node  
+# Helper function to allocates a new node 
+class newNode:  
+    def __init__(self, data):  
+        self.data = data  
+        self.left = self.right = None
+          
+# Function to compute height and  
+# size of a binary tree  
+def heighAndSize(node, size):  
+  
+    if (node == None) : 
+        return 0
+  
+    # compute height of each subtree  
+    l = heighAndSize(node.left, size)  
+    r = heighAndSize(node.right, size)  
+  
+    #increase size by 1  
+    size[0] += 1
+  
+    # return larger of the two  
+    return l + 1 if(l > r) else r + 1
+  
+# function to calculate density  
+# of a binary tree  
+def density(root): 
+  
+    if (root == None) : 
+        return 0
+  
+    size = [0] # To store size  
+  
+    # Finds height and size  
+    _height = heighAndSize(root, size)  
+  
+    return size[0] / _height  
+  
+# Driver Code  
+if __name__ == '__main__': 
+    root = newNode(1)  
+    root.left = newNode(2)  
+    root.right = newNode(3)  
+  
+    print("Density of given binary tree is ", 
+                               density(root)) 
